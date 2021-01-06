@@ -21,7 +21,7 @@ app.use('/api/products',productRoutes)
 
 //error처리 
 app.use((error,req,res,next)=>{
-    res.status(500).json({msessage:error.message})
+    res.status(500).json({message:error.message})
 })
 
 // applicaiton 시작
