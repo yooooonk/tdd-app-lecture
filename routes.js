@@ -6,6 +6,7 @@ const productController = require('./controller/products')
 // 2. ㄱrouter에서 미들웨어 함수를 load하기
 router.post('/',productController.createProduct);
 router.get('/',productController.getProducts);
+router.get('/:productId',productController.getProductById);
 
 module.exports = router;
 // 3. 몇몇 Route를 정의하기
