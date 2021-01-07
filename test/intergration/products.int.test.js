@@ -45,6 +45,33 @@ test('GET /api/product/:productId',async()=>{
 })
 
 test('GET id doenst exist /api/products/:productId',async()=>{
-    const response = await request(app).get('/api/products/5febd3236931533e')
+    const response = await request(app).get('/api/products/5febd3236931533e7c06111c')
     expect(response.statusCode).toBe(404)
+})
+
+test('PUT /api/products',async()=>{
+    const res = await request(app).put('/api/products/'+firstProduct._id)
+                                    .send({name:'LG',description:'valet'})
+    expect(res.statusCode).toBe(200)
+    expect(res.body.name).toBe('LG')
+    expect(res.body.description).toBe('valet')
+})
+
+test('PUT id doenst exist /api/products/:productId',async()=>{
+    const res = await request(app).put('/api/products/5febd3236931533e7c06111c')
+                                    .send({name:'LG',description:'valet'})
+    expect(res.statusCode).toBe(404)
+})
+
+test('DELETE /api/products',async()=>{
+    const res = await request(app).delete('/api/products'+firstProduct._id)
+                                    .send()
+    expect(res.statusCode).toBe(200);
+})
+
+it('DELETE id doenst exist /api/products/:productId',async()=>{
+    const res = await request(app)
+                        .delete('/api/products/5febd3236931533e7c06111c')
+                        .send()
+    expect(res.statusCode).toBe(404)
 })
